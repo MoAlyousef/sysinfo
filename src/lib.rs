@@ -130,7 +130,7 @@ pub fn set_open_files_limit(mut _new_limit: isize) -> bool {
                 // files are closed, we subtract the current number of opened files to the new
                 // limit.
                 let diff = max - **x;
-                **x = _new_limit - diff;
+                **x = _new_limit.saturating_sub(diff);
                 true
             } else {
                 false
